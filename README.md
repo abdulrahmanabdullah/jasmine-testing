@@ -8,7 +8,7 @@
 - [Prerequisite](#prerequisite)
 
 ## Getting-started 🔥
-Download repo from [here]() then click index file, Jasmine already run all testing.
+Download repo from [here](https://github.com/abdulrahmanabdullah/jasmine-testing) then click index file, Jasmine already run all testing.
 All testing we wrote in feedreader.js.
 
 ## General-info 💁 
