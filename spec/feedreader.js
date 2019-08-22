@@ -25,10 +25,7 @@ $(function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+        // Check is allFeeds has defined URL and not empty
         let feeds;
         beforeEach(() => {
             feeds = allFeeds;
@@ -42,11 +39,8 @@ $(function () {
 
         });
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
 
+        // Check is allFeeds has defined name and not empty
         it("Is All feeds contain names", () => {
             feeds.forEach((feed) => {
                 expect(feed.name).toBeDefined();
@@ -55,17 +49,11 @@ $(function () {
         });
     });
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* Menu Testing */
     describe("The Menu", () => {
-        /* TODO: Write a test that ensures the menu changes
-         * visibility when the menu icon is clicked. This test
-         * should have two expectations: does the menu display when
-         * clicked and does it hide when clicked again.
-         */
-
+         // Test when page loaded the menu is hidden and visible when menu icon is clicked 
         let body = document.querySelector('body');
         let menuEvent = document.querySelector('.menu-icon-link');
-
         it('Dose menu hidden', () => {
             expect(body.classList.contains('menu-hidden')).toBe(true);
         });
@@ -77,7 +65,7 @@ $(function () {
         });
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* Initial Entries Test */
     describe("Initial Entries", () => {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -85,6 +73,7 @@ $(function () {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        // Async testing to checking data is loaded and  visible 
         beforeEach((done) => {
             loadFeed(0, done);
         });
@@ -99,13 +88,10 @@ $(function () {
     });
 
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* New Feed Selection */
 
     describe("New Feed Selection", () => {
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        // When categories change check data is change .
         let oldFeed, newFeed;
         beforeEach((done) => {
             loadFeed(0, () => {
@@ -122,7 +108,4 @@ $(function () {
         });
 
     });
-
-
-
 }());
