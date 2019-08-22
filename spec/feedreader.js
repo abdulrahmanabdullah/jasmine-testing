@@ -21,7 +21,7 @@ $(function () {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function () {
+        it('Are defined', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -29,7 +29,7 @@ $(function () {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        var feeds;
+        let feeds;
         beforeEach(() => {
             feeds = allFeeds;
         });
@@ -49,6 +49,7 @@ $(function () {
 
         it("Is All feeds contain names", () => {
             feeds.forEach((feed) => {
+                expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBe('');
             });
         });
@@ -56,17 +57,11 @@ $(function () {
 
     /* TODO: Write a new test suite named "The menu" */
     describe("The Menu", () => {
-        // let id = document.querySelector('.menu-icon-link');
-        // id.addEventListener('click',e =>{
-        //     console.log(e);
-        // });
-
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
-
 
         let body = document.querySelector('body');
         let menuEvent = document.querySelector('.menu-icon-link');
@@ -93,11 +88,10 @@ $(function () {
         beforeEach((done) => {
             loadFeed(0, done);
         });
-        let feedClass = document.querySelector('.feed');
-        it("is load feed completed ", (done) => {
+        it("Is load feed completed ", (done) => {
             // When feed class has children that mean it's not empty 
-            expect(feedClass.children.length).toBeGreaterThan(0);
-            // expect($('.feed').has('.entry').length).toBeGreaterThan(0);
+            // expect(feedClass.children.length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         });
 
@@ -112,27 +106,18 @@ $(function () {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-
-        let preTitle, preEntry;
-        let currentTitle, currentEntry;
+        let oldFeed, newFeed;
         beforeEach((done) => {
             loadFeed(0, () => {
-                let headerTitle = document.querySelector('.header-title').textContent;
-                let entry = document.querySelector('.entry').children[0].textContent;
-                preTitle = headerTitle;
-                preEntry = entry;
+                oldFeed = document.querySelector('.feed').textContent;
+                loadFeed(1, () => {
+                    newFeed = document.querySelector('.feed').textContent;
+                    done();
+                })
             });
-            loadFeed(1, () => {
-                let headerTitle = document.querySelector('.header-title').textContent;
-                let entry = document.querySelector('.entry').children[0].textContent;
-                currentTitle = headerTitle;
-                currentEntry = entry;
-                done();
-            })
         });
         it('Content is changed', (done) => {
-            expect(preTitle).not.toEqual(currentTitle);
-            expect(preEntry).not.toEqual(currentEntry);
+            expect(oldFeed).not.toEqual(newFeed);
             done();
         });
 
